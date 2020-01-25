@@ -2,7 +2,7 @@
 #'
 #'
 #' @param textdata text data including Japanese Calendar.
-#' @param document If something trouble with the output, the document, a piecs of text temporary added to document, may be the cause. If needed, instead of the default document, you may use your original document, which is recommended to be a reasonably long String without using numeric.
+#' @param dummyText If something trouble with the output, the dummyText, a piecs of text temporary added to document, may be the cause. If needed, instead of the default dummyText, you may use your original dummyText, which is recommended to be a reasonably long String without using numeric.
 #' @param loop Whether the process applies again and again to a part once converted. Default FALSE is strongly recommended.
 #'
 #' @importFrom stringr str_c
@@ -14,12 +14,12 @@
 #' @importFrom utils data
 #'
 #'
-#' @return Character. Document Converted.
+#' @return document
 #' @export
 #'
-wareki2 <- function(textdata, document = NA, loop = FALSE) {
-  if (is.na(document)) {
-    document <- "dummymojiretsudesuyo_saigonikeshimasu"
+wareki2 <- function(textdata, dummyText = NA, loop = FALSE) {
+  if (is.na(dummyText)) {
+    dummyText <- "dummymojiretsudesuyo_saigonikeshimasu"
   }
   for (gengou in gengouList[, "gengou"]) {
     gengouFirstYear <- gengouList[gengouList$gengo == gengou, "year"] %>% as.numeric()
@@ -57,18 +57,18 @@ wareki2 <- function(textdata, document = NA, loop = FALSE) {
       }
       if (is.na(romaNumeric)) {
         excluded <- as.character(waYear)
-        temp <- str_c(substr(gengou, 1, 1), document, substr(gengou, 2, 2), excluded)
+        temp <- str_c(substr(gengou, 1, 1), dummyText, substr(gengou, 2, 2), excluded)
         textdata <- gsub(myYear, temp, textdata) %>% as.character()
       } else {
         seireki <- as.numeric(gengouFirstYear) + as.numeric(romaNumeric) - 1
         seireki %<>% as.character()
         if (loop == FALSE) {
-          seireki <- str_c(document, seireki, document)
+          seireki <- str_c(dummyText, seireki, dummyText)
         }
         textdata <- gsub(beforeText, seireki, textdata) %>% as.character()
       }
     }
   }
-  textdata <- gsub(as.character(document), "", textdata)
+  textdata <- gsub(as.character(dummyText), "", textdata)
   textdata
 }

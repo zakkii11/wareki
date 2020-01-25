@@ -13,7 +13,7 @@
 #' @importFrom utils read.csv
 #' @importFrom utils data
 #'
-#' @return Character. Document Converted.
+#' @return document converted
 #' @export
 #'
 wareki <- function(document, dummyText = NA, loop = FALSE) {
