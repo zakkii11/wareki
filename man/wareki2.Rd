@@ -9,7 +9,7 @@ wareki2(textdata, document = NA, loop = FALSE)
 \arguments{
 \item{textdata}{text data including Japanese Calendar.}
 
-\item{document}{If something trouble with the output, the document, a piecs of text temporary added to document, may be the cause. If needed, instead of the default document, you may use your original document, which is recommended to be a reasonably long String without using numeric.}
+\item{document}{If something trouble with the output, the dummyText, a piecs of text temporary added to document, may be the cause. If needed, instead of the default document, you may use your original document, which is recommended to be a reasonably long String without using numeric.}
 
 \item{loop}{Whether the process applies again and again to a part once converted. Default FALSE is strongly recommended.}
 }
