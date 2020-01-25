@@ -1,7 +1,7 @@
 #' Convert Japanese Calendar, Gen-gou, into Westerm Year in sentences.
 #'
 #'
-#' @param document text data including Japanese Calendar.
+#' @param textdata text data including Japanese Calendar.
 #' @param dummyText If something trouble with the output, the dummyText, a piecs of text temporary added to document, may be the cause. If needed, instead of the default dummyText, you may use your original dummyText, which is recommended to be a reasonably long String without using numeric.
 #' @param loop Whether the process applies again and again to a part once converted. Default FALSE is strongly recommended.
 #'
@@ -11,26 +11,28 @@
 #' @importFrom stringr str_detect
 #' @importFrom dplyr %>%
 #' @importFrom magrittr %<>%
+#' @importFrom utils data
+#'
 #'
 #' @return document
 #' @export
 #'
 wareki2 <- function(textdata, dummyText = NA, loop = FALSE){
-  if(is.na(dummyText)){
+  if(is.na(dummyText)) {
     dummyText = "dummymojiretsudesuyo_saigonikeshimasu"
   }
-  for(gengou in gengouList[, "元号"]){
-    gengouFirstYear <- gengouList[gengouList$元号==gengou, "元年西暦"] %>% as.numeric()
+  for(gengou in gengouList[, "gengou"]){
+    gengouFirstYear <- gengouList[gengouList$gengou==gengou, "year"] %>% as.numeric()
     detectYear <- str_c("(",gengou, ".","|", gengou, "..","|",gengou, "...",")")
     while(str_detect(textdata, pattern=detectYear)){
-      startYear <- regexpr(detectYear, textdata)
+      startYear <- regexpr(detectYear, textdata, useBytes = F)
       endYear <- startYear + attr(startYear,"match.length") -1
       myYear <- substr(textdata, startYear, endYear)
       numericDetect <- str_c("(", gengou, ")")
       waYear <- gsub(numericDetect, "", myYear)
       waYear1 <- waYear
       waYearX1 <- waYear
-      if(waYear1 == "元"){
+      if(waYear1 == "\u5143"){
         waYear1 <- as.numeric(1)
         }
       romaNumeric <- suppressWarnings(as.numeric(waYear1))
@@ -38,7 +40,7 @@ wareki2 <- function(textdata, dummyText = NA, loop = FALSE){
       if(is.na(romaNumeric)){
         waYear2 <- str_sub(waYear, end = -2)
         waYearX2 <- waYear2
-        if(waYear2 == "元"){
+        if(waYear2 == "\u5143"){
           waYear2 <- as.numeric(1)
         }
         romaNumeric <- suppressWarnings(as.numeric(waYear2))
@@ -47,7 +49,7 @@ wareki2 <- function(textdata, dummyText = NA, loop = FALSE){
       if(is.na(romaNumeric)){
         waYear3 <- str_sub(waYear, end = -3)
         waYearX3 <- waYear3
-        if(waYear3 == "元"){
+        if(waYear3 == "\u5143"){
           waYear3 <- as.numeric(1)
         }
         romaNumeric <- suppressWarnings(as.numeric(waYear3))

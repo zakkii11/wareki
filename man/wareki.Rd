@@ -14,7 +14,7 @@ wareki(document, dummyText = NA, loop = FALSE)
 \item{loop}{Whether the process applies again and again to a part once converted. Default FALSE is strongly recommended.}
 }
 \value{
-document
+document converted
 }
 \description{
 Convert Japanese Calendar, Gen-gou, into Westerm Year in sentences.
