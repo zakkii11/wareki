@@ -16,39 +16,39 @@
 #' @return document converted
 #' @export
 #'
-wareki <- function(document, dummyText = NA, loop = FALSE){
-if(is.na(dummyText)) {
-    dummyText = "dummymojiretsudesuyo_saigonikeshimasu"
+wareki <- function(document, dummyText = NA, loop = FALSE) {
+  if (is.na(dummyText)) {
+    dummyText <- "dummymojiretsudesuyo_saigonikeshimasu"
   }
-  for(gengou in gengouList[, "gengou"]){
-    gengouFirstYear <- gengouList[gengouList$gengou==gengou, "year"]
-    detectYear <- str_c("(",gengou, ".\u5e74|", gengou, "..\u5e74|",gengou, "...\u5e74)")
-    while(str_detect(document, pattern=detectYear)){
+  for (gengou in gengouList[, "gengou"]) {
+    gengouFirstYear <- gengouList[gengouList$gengou == gengou, "year"]
+    detectYear <- str_c("(", gengou, ".\u5e74|", gengou, "..\u5e74|", gengou, "...\u5e74)")
+    while (str_detect(document, pattern = detectYear)) {
       startYear <- regexpr(detectYear, document, useBytes = F)
-      endYear <- startYear + attr(startYear,"match.length") -1
+      endYear <- startYear + attr(startYear, "match.length") - 1
       myYear <- substr(document, startYear, endYear)
-      if(str_sub(myYear, start = 3, end = 4) == gengou){
+      if (str_sub(myYear, start = 3, end = 4) == gengou) {
         startYear <- regexpr(detectYear, document) + 2
         myYear <- substr(document, startYear, endYear)
       }
-      if(str_sub(myYear, start = 4, end = 5) == gengou){
-        replacementTx <- substr(document, startYear+2, endYear)
+      if (str_sub(myYear, start = 4, end = 5) == gengou) {
+        replacementTx <- substr(document, startYear + 2, endYear)
         replacementTx <- str_c(gengou, dummyText, replacementTx)
         document <- gsub(myYear, replacementTx, document)
       } else {
         numericDetect <- str_c("(", gengou, "|\u5e74)")
         waYear <- gsub(numericDetect, "", myYear)
-        if(waYear == "\u5143"){
+        if (waYear == "\u5143") {
           waYear <- as.numeric(1)
-          }
+        }
         romaNumeric <- suppressWarnings(as.numeric(waYear))
-        if(is.na(romaNumeric)){
+        if (is.na(romaNumeric)) {
           excluded <- as.character(waYear)
           temp <- str_c(gengou, dummyText, excluded, "\u5e74")
           document <- gsub(myYear, temp, document) %>% as.character()
         }else{
           seireki <- gengouFirstYear + romaNumeric - 1
-          if(loop == FALSE){
+          if (loop == FALSE) {
             convertedYear <- str_c(dummyText, seireki, "\u5e74")
           } else {
             convertedYear <- str_c(seireki, "\u5e74")

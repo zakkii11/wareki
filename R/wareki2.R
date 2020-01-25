@@ -17,56 +17,56 @@
 #' @return document
 #' @export
 #'
-wareki2 <- function(textdata, dummyText = NA, loop = FALSE){
-  if(is.na(dummyText)) {
-    dummyText = "dummymojiretsudesuyo_saigonikeshimasu"
+wareki2 <- function(textdata, dummyText = NA, loop = FALSE) {
+  if (is.na(dummyText)) {
+    dummyText <- "dummymojiretsudesuyo_saigonikeshimasu"
   }
-  for(gengou in gengouList[, "gengou"]){
-    gengouFirstYear <- gengouList[gengouList$gengou==gengou, "year"] %>% as.numeric()
-    detectYear <- str_c("(",gengou, ".","|", gengou, "..","|",gengou, "...",")")
-    while(str_detect(textdata, pattern=detectYear)){
+  for (gengou in gengouList[, "gengou"]) {
+    gengouFirstYear <- gengouList[gengouList$gengo == gengou, "year"] %>% as.numeric()
+    detectYear <- str_c("(", gengou, ".", "|", gengou, "..", "|", gengou, "...", ")")
+    while (str_detect(textdata, pattern = detectYear)) {
       startYear <- regexpr(detectYear, textdata, useBytes = F)
-      endYear <- startYear + attr(startYear,"match.length") -1
+      endYear <- startYear + attr(startYear, "match.length") - 1
       myYear <- substr(textdata, startYear, endYear)
       numericDetect <- str_c("(", gengou, ")")
       waYear <- gsub(numericDetect, "", myYear)
       waYear1 <- waYear
       waYearX1 <- waYear
-      if(waYear1 == "\u5143"){
+      if (waYear1 == "\u5143") {
         waYear1 <- as.numeric(1)
-        }
+      }
       romaNumeric <- suppressWarnings(as.numeric(waYear1))
       beforeText <- str_c(gengou, waYearX1)
-      if(is.na(romaNumeric)){
+      if (is.na(romaNumeric)) {
         waYear2 <- str_sub(waYear, end = -2)
         waYearX2 <- waYear2
-        if(waYear2 == "\u5143"){
+        if (waYear2 == "\u5143") {
           waYear2 <- as.numeric(1)
         }
         romaNumeric <- suppressWarnings(as.numeric(waYear2))
         beforeText <- str_c(gengou, waYearX2)
       }
-      if(is.na(romaNumeric)){
+      if (is.na(romaNumeric)) {
         waYear3 <- str_sub(waYear, end = -3)
         waYearX3 <- waYear3
-        if(waYear3 == "\u5143"){
+        if (waYear3 == "\u5143") {
           waYear3 <- as.numeric(1)
         }
         romaNumeric <- suppressWarnings(as.numeric(waYear3))
         beforeText <- str_c(gengou, waYearX3)
       }
-      if(is.na(romaNumeric)){
+      if (is.na(romaNumeric)) {
         excluded <- as.character(waYear)
-        temp <- str_c(substr(gengou,1,1), dummyText, substr(gengou,2,2), excluded)
+        temp <- str_c(substr(gengou, 1, 1), dummyText, substr(gengou, 2, 2), excluded)
         textdata <- gsub(myYear, temp, textdata) %>% as.character()
       } else {
         seireki <- as.numeric(gengouFirstYear) + as.numeric(romaNumeric) - 1
         seireki %<>% as.character()
-        if(loop == FALSE){
+        if (loop == FALSE) {
           seireki <- str_c(dummyText, seireki, dummyText)
         }
         textdata <- gsub(beforeText, seireki, textdata) %>% as.character()
-        }
+      }
     }
   }
   textdata <- gsub(as.character(dummyText), "", textdata)
