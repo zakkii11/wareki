@@ -1,9 +1,9 @@
 #' Convert Japanese Calendar, Gen-gou, into Westerm Year in sentences.
 #'
 #'
-#' @param document text data including Japanese Calendar.
-#' @param dummyText If something trouble with the output, the dummyText, a piecs of text temporary added to document, may be the cause. If needed, instead of the default dummyText, you may use your original dummyText, which is recommended to be a reasonably long String without using numeric.
-#' @param loop Whether the process applies again and again to a part once converted. Default FALSE is strongly recommended.
+#' @param document Text Data including Japanese Calendar. Must be Character.
+#' @param dummyText If something Trouble with the Output, the dummyText, a Piece of Text temporarily added to document, may be the cause. If needed, instead of the default dummyText, you may use your original dummyText, which is recommended to be a reasonably long String without using Numeric.
+#' @param loop Whether the Process applies again and again to a Part once converted. Default FALSE is strongly recommended.
 #'
 #' @importFrom stringr str_c
 #' @importFrom stringr str_detect
