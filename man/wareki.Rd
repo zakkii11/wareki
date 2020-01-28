@@ -7,11 +7,11 @@
 wareki(document, dummyText = NA, loop = FALSE)
 }
 \arguments{
-\item{document}{text data including Japanese Calendar.}
+\item{document}{Text Data including Japanese Calendar. Must be Character.}
 
-\item{dummyText}{If something trouble with the output, the dummyText, a piecs of text temporary added to document, may be the cause. If needed, instead of the default dummyText, you may use your original dummyText, which is recommended to be a reasonably long String without using numeric.}
+\item{dummyText}{If something Trouble with the Output, the dummyText, a Piece of Text temporarily added to document, may be the cause. If needed, instead of the default dummyText, you may use your original dummyText, which is recommended to be a reasonably long String without using Numeric.}
 
-\item{loop}{Whether the process applies again and again to a part once converted. Default FALSE is strongly recommended.}
+\item{loop}{Whether the Process applies again and again to a Part once converted. Default FALSE is strongly recommended.}
 }
 \value{
 Character. Document Converted.
