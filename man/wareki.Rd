@@ -7,14 +7,14 @@
 wareki(document, dummyText = NA, loop = FALSE)
 }
 \arguments{
-\item{document}{Text Data including Japanese Calendar. Must be Character.}
+\item{document}{Text Data including Japanese Calendar. Must be Character vector.}
 
 \item{dummyText}{If something Trouble with the Output, the dummyText, a Piece of Text temporarily added to document, may be the cause. If needed, instead of the default dummyText, you may use your original dummyText, which is recommended to be a reasonably long String without using Numeric.}
 
 \item{loop}{Whether the Process applies again and again to a Part once converted. Default FALSE is strongly recommended.}
 }
 \value{
-Character. Document Converted.
+Character Vector. Document Converted.
 }
 \description{
 Convert Japanese Calendar, Gen-gou, into Westerm Year in sentences.
