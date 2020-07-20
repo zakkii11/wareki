@@ -14,7 +14,7 @@
 
 **EN:** <BR>The latest version 0.1.1 was build under R 3.6.0
 
-**JA:** <BR>最新のバージョン0.1.1はR3.6.0の下で作成されました。
+**JA:** <BR>最新のバージョン0.1.1はR 3.6.0の下で作成されました。
 
 ## Installation
 
