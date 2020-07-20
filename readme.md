@@ -12,7 +12,7 @@
 
 ## Version
 
-**EN:** <BR>The latest version 0.1.1 was build under R 3.6.0
+**EN:** <BR>The latest version 0.1.1 was build under R 3.6.0.
 
 **JA:** <BR>最新のバージョン0.1.1はR 3.6.0の下で作成されました。
 
@@ -41,7 +41,7 @@ wareki("恐らく平成20年生まれの人は、令和元年にはもう11歳�
 
 ## More Information
 
-**EN:** <BR>Detailed information in Japanese is available at the following URL
+**EN:** <BR>Detailed information in Japanese is available at the following URL.
 
 **JA:** <BR>本パッケージに関するより詳細な解説は、下記のQiita記事をご参照ください。
 
