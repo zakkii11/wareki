@@ -6,7 +6,7 @@
 
 ## Overview
 
-**EN:** <BR>`{wareki}` helps you working with documents which include Japanese calender by translating Japanese Calender (Wareki) in Sentences into Western Year. The packages will be useful when you want to replace Japanese calender in character data into Western calender. It would also be useful for modifying orthographical variants in the documents which contain both Japanese and Western calender.
+**EN:** <BR>`{wareki}` helps you working with documents which include Japanese calender by translating Japanese Calender (Wareki) in Sentences into Western Year. The packages will be useful when you want to replace Japanese calender in character data into Western calender. It would also be useful for absorbing orthographical variants by unifying Japanese calender in the documents into Western calender.
 
 **JA:** <BR>`{wareki}`は文書内の和暦を西暦に変換するRパッケージです。このパッケージの用途例として, 和暦で与えられたパネルデータや有価証券報告書内のデータを西暦に変換することで時系列分析の下準備に用いることができるほか, 和暦と西暦の混在した文章について自然言語処理による分析を行うための前処理として西暦に統一させることで, 西暦・和暦の表記ゆれを吸収することができます。
 
