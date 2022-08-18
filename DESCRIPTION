@@ -2,8 +2,8 @@ Package: wareki
 Type: Package
 Title: What the Package Does (Title Case)
 Version: 0.1.1
-Author: person("Shota", "Yamazaki", e-mail = "zakkiiii@outlook.jp", role = c("aut", "cre"))
-Maintainer: Shota Yamazaki <zakkiiii@outlook.jp>
+Author: person("zak", "kii.", e-mail = "zakkiiii@outlook.jp", role = c("aut", "cre"))
+Maintainer: zakkiiii <zakkiiii@outlook.jp>
 Description: This package do convert Japanese Calendar, Gen-gou, included in Sentences into Westerm Year.
 License: Apache License 2.0
 Encoding: UTF-8
